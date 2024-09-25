@@ -1,0 +1,10 @@
+
+# 環境変数
+.env
+# ログ出力先
+go/log/api/*
+go/log/error/*
+!.gitkeep
+
+# Visual studio codeに関するファイルを除外
+.vscode/

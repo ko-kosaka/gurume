@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ぐるめ情報検索</title>
+        <link rel="stylesheet" href="/assets/css/common.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        {{ template "header" . }}
+        <main>
+            <div>キーワードを入力(半角スペース区切りで複数条件可)</div>
+            <form method="GET" action="/gourmetSearch">
+                <input type="text" name="keyword">
+                <button type="submit">検索</button>
+            </form>
+            <div>
+                {{range .Data.Shop}}
+                <div class="search-result">
+                    <div>
+                        <a href="{{.Urls.Pc}}">
+                            <img src="{{.Photo.Pc.L}}" alt="{{.Name}}">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{{.Urls.Pc}}">{{.Name}}</a>
+                    </div>
+                    <div>{{.Address}}</div>
+                    <div>最寄駅：{{.StationName}}</div>
+                    <div>アクセス：{{.Access}}</div>
+                </div>
+                {{else}}
+                <div>検索結果なし</div>
+                {{end}}
+            </div>
+        </main>
+        {{ template "footer" . }}
+    </body>
+</html>
